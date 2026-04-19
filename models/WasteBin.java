@@ -1,4 +1,4 @@
-package smartwaste.models;
+package models;
 
 public class WasteBin {
     private String binId;
