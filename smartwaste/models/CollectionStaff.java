@@ -1,4 +1,4 @@
-package smartwaste.models;
+package models;
 public class CollectionStaff extends User {
     public CollectionStaff(String username) { super(username, "Staff"); }
 

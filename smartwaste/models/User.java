@@ -1,4 +1,4 @@
-package smartwaste.models;
+package models;
 public abstract class User {
     protected String username;
     public String role;

@@ -1,6 +1,6 @@
-package smartwaste.management;
+package management;
 
-import smartwaste.models.*;
+import models.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -31,7 +31,7 @@ public class SmartWasteManagement {
 
         try {
             bin1.addWaste(80.0);
-            bin2.addWaste(120.0); // Throws BinOverflowException
+            bin2.addWaste(120.0); 
             
         } catch (BinOverflowException e) {
             engine.triggerAlert(e.getMessage(), "High");

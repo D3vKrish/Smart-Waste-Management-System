@@ -1,4 +1,6 @@
-package smartwaste.models;
+package models;
 public class InvalidBinOperationException extends Exception {
-    public InvalidBinOperationException(String message) { super(message); }
+    public InvalidBinOperationException(String message) { 
+        super(message); 
+    }
 }

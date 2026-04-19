@@ -1,4 +1,4 @@
-package smartwaste.management;
+package management;
 import models.WasteBin;
 
 public class AnalyticsEngine implements Reportable, AlertSystem {
