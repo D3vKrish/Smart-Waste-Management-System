@@ -1,4 +1,4 @@
-package smartwaste.management;
+package smartwaste.models;
 public class Admin extends User {
     public Admin(String username) { 
         super(username, "Administrator"); 
