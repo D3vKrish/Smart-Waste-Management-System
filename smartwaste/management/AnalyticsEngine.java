@@ -1,7 +1,7 @@
 package management;
 import models.WasteBin;
 
-public class AnalyticsEngine implements Reportable, AlertSystem {
+class AnalyticsEngine implements Reportable, AlertSystem {
     private double totalRecyclableCollected = 0;
     private double totalNonRecyclableCollected = 0;
 
@@ -40,10 +40,10 @@ public class AnalyticsEngine implements Reportable, AlertSystem {
         }
     }
 
-    public void logMissedPickups(String... missedBinIds) {
+    public void logMissedPickups(WasteBin[] missedBinIds) {
         System.out.print("ALERT: Missed pickups for bins: ");
-        for (String id : missedBinIds) {
-            System.out.print(id + " ");
+        for (WasteBin bin : missedBinIds) {
+            System.out.print(bin.getBinId() + " ");
         }
         System.out.println();
     }

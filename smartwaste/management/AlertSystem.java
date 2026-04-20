@@ -1,4 +1,4 @@
 package management;
-public interface AlertSystem {
+interface AlertSystem {
     void triggerAlert(String message, String severity); 
 }
