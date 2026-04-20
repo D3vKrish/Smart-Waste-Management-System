@@ -49,7 +49,9 @@ class AnalyticsEngine implements Reportable, AlertSystem {
     }
 
     @Override
-    public void generateSummary() { printStats(true); }
+    public void generateSummary() { 
+        printStats(true); 
+    }
 
     @Override
     public void triggerAlert(String message, String severity) {
