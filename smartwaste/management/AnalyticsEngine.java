@@ -21,9 +21,9 @@ class AnalyticsEngine implements Reportable, AlertSystem {
 
     public void printStats(String category) {
         if (category.equalsIgnoreCase("recyclable")) 
-            System.out.println("Recyclable Collected: " + totalRecyclableCollected + " kg");
+            System.out.printf("Recyclable Collected: %.2f kg\n", totalRecyclableCollected);
         else 
-            System.out.println("Non-Recyclable Collected: " + totalNonRecyclableCollected + " kg");
+            System.out.printf("Non-Recyclable Collected: %.2f kg\n", totalNonRecyclableCollected);
     }
 
     public void printStats(boolean detailed) {
@@ -33,15 +33,14 @@ class AnalyticsEngine implements Reportable, AlertSystem {
             printStats("organic");
             double efficiency = (totalRecyclableCollected / (totalRecyclableCollected + 
                 totalNonRecyclableCollected + 0.1)) * 100;
-            System.out.println("Recycling Efficiency: " + String.format("%.2f", 
-                efficiency) + "%");
+            System.out.printf("Recycling Efficiency: %.2f%%", efficiency);
         } else {
             printStats();
         }
     }
 
     public void logMissedPickups(WasteBin[] missedBinIds) {
-        System.out.print("ALERT: Missed pickups for bins: ");
+        System.out.println("ALERT: Missed pickups for bins: ");
         for (WasteBin bin : missedBinIds) {
             System.out.println(bin.getBinId() + " " + bin.getLocation());
         }

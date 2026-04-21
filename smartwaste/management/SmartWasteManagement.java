@@ -7,7 +7,7 @@ import java.util.*;
 
 class SmartWasteManagement {
     int employeeCount = 0;
-    final int MAX_CAPACITY = 3;
+    final int MAX_CAPACITY = 2;
     void registerEmployee(String username, String role, User[] users) throws ArrayIndexOutOfBoundsException {
         Scanner sc1 = new Scanner(System.in);
         if (employeeCount >= users.length) {
@@ -67,7 +67,7 @@ class SmartWasteManagement {
         System.out.println("Welcome to Smart Waste Management System");
         System.out.print("Enter number of employees to register: ");
         numEmployees = sc.nextInt();
-        numBins = rand.nextInt(numEmployees+2);
+        numBins = rand.nextInt(numEmployees*2)+2;
         users = new User[numEmployees];
         bins = new WasteBin[numBins];
         for (int i = 0; i < numBins; i++) {
