@@ -1,6 +1,11 @@
 package models;
 public class CollectionStaff extends User {
     String location;
+    /**
+     * Constructor for CollectionStaff
+     * @param username: Unique identifier for the staff member
+     * @param location: Zone of operation (A, B, C) which maps to specific campus locations
+     */
     public CollectionStaff(String username, String location) { 
         super(username, "Staff"); 
         switch(location.toUpperCase()) {
@@ -17,11 +22,18 @@ public class CollectionStaff extends User {
         }
     }
 
+    /**
+     * Displays the staff dashboard.
+     * Access is restricted to staff members only.
+     */
     public void showDashboard() {
         System.out.println("Restricted staff access granted to user: "+this.username);
         System.out.println("Staff Dashboard: Operational updates and schedules.");
     }
 
+    /**
+     * Getter for the staff member's location.
+     */
     public String getLocation() { 
         return this.location; 
     }

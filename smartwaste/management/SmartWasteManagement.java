@@ -7,7 +7,19 @@ import java.util.*;
 
 class SmartWasteManagement {
     int employeeCount = 0;
+    // This constant defines the maximum number of bins that can be collected per staff.
     final int MAX_CAPACITY = 2;
+
+    /**
+     * Registers an employee as either an admin or collection staff. 
+     * Admins have access to all system functionalities, while collection staff are
+     * assigned to specific locations and can only perform waste collection tasks.
+     * @param username: The username of the employee being registered.
+     * @param role: The role of the employee, either "admin" or "staff".
+     * @param users: The array of users where the new employee will be added.
+     * @throws ArrayIndexOutOfBoundsException: Thrown when the employee count exceeds the
+     *                                         length of the users array.
+     */
     void registerEmployee(String username, String role, User[] users) throws ArrayIndexOutOfBoundsException {
         Scanner sc1 = new Scanner(System.in);
         if (employeeCount >= users.length) {
@@ -25,6 +37,17 @@ class SmartWasteManagement {
         users[employeeCount - 1].showDashboard();
     }
 
+    /**
+     * Performs waste collection from a specified bin by an active user. The method checks 
+     * if the user is authorized to collect from the bin based on their role and location. 
+     * If the user is a collection staff and is assigned to the same location as the bin, 
+     * the collection is performed, and an event is logged. 
+     * If the user is not authorized, an UnauthorizedAccessException is thrown 
+     * @param bin: The waste bin from which the collection is to be performed.
+     * @param activeUser: The user attempting to perform the collection.
+     * @throws UnauthorizedAccessException: Thrown when the user does not have permission
+     *                                      to perform the collection.
+     */
     void performCollection(WasteBin bin, User activeUser) throws UnauthorizedAccessException{
         if (activeUser instanceof CollectionStaff) {
             CollectionStaff staff = (CollectionStaff) activeUser;
@@ -43,6 +66,14 @@ class SmartWasteManagement {
         throw new UnauthorizedAccessException("User "+activeUser.getUsername()+" is not authorized to perform collection due to insufficient permissions.");
     }
 
+
+    /**
+     * Logs an event related to a waste bin, such as collection or maintenance activities. 
+     * The event is appended to a log file named with the bin ID and event description. 
+     * If there is an error while writing to the file, an error message is printed to the console.
+     * @param bin: The waste bin associated with the event being logged.
+     * @param event: A description of the event to be logged.
+     */
     void logEvent(WasteBin bin, String event) {
         try (FileWriter writer = new FileWriter("waste_management_log.txt", true)) {
             writer.write("Bin " + bin.getBinId() + ": " + event + "\n");
@@ -51,19 +82,24 @@ class SmartWasteManagement {
         }
     }
 
+    // The main method for simulating the system
     public static void main(String[] args) {
+        // Simulation parameters and setup
         int numEmployees = 0;
         int numBins = 0;
         User[] users;
         WasteBin[] bins;
-        Scanner sc = new Scanner(System.in);
-        AnalyticsEngine engine = new AnalyticsEngine();
-        SmartWasteManagement system = new SmartWasteManagement();
         String[] types = { "organic", "recyclable" };
         String[] locations = { "BITS Pilani, Goa Campus",
                 "BITS Pilani, Hyderabad Campus", "BITS Pilani, Pilani Campus" };
-        Random rand = new Random();
 
+        // Instantiating required objects for the simulation
+        Random rand = new Random();
+        Scanner sc = new Scanner(System.in);
+        AnalyticsEngine engine = new AnalyticsEngine();
+        SmartWasteManagement system = new SmartWasteManagement();
+
+        // Starting simulation
         System.out.println("Welcome to Smart Waste Management System");
         System.out.print("Enter number of employees to register: ");
         numEmployees = sc.nextInt();
